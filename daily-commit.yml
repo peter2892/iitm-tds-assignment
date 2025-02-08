@@ -1,10 +1,10 @@
-name: Daily Commit - 23f3003594@ds.study.iitm.ac.in
+name: 23f3003594@ds.study.iitm.ac.in
 
 on:
   schedule:
-    - cron: "15 6 * * *"  # Runs daily at midnight UTC
+    - cron: "15 6 * * *"  
 
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch:  
 
 jobs:
   commit:
