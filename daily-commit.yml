@@ -1,28 +1,33 @@
-name: 23f3003594@ds.study.iitm.ac.in
+name: Daily Commit Workflow
 
 on:
   schedule:
-    - cron: "15 6 * * *"  
-
-  workflow_dispatch:  
+    # Run at 10:30 AM UTC every day
+    - cron: '57 15 * * *'
+  # Optional: Allow manual triggering for testing
+  workflow_dispatch:
 
 jobs:
-  commit:
+  create-daily-commit:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Configure Git
+      
+      - name: 23f3003594@ds.study.iitm.ac.in
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "23f3003594@ds.study.iitm.ac.in"
-
-      - name: Make a commit
+          git pull  
+          echo "Last updated: $(date)" > update.txt
+          
+      
+      - name: Commit and push changes
         run: |
-          echo "Last run: $(date)" > last_run.txt
-          git add last_run.txt
-          git commit -m "Automated commit on $(date)"
+          git config --local user.email "tds@dummy"
+          git config --local user.name "tds-solver"
+          git add update.txt  
+          git commit -m "Routine change done" || exit 0
           git push
 
